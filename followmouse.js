@@ -30,10 +30,24 @@ var krpanoplugin = function() {
 		krpano.set('hlookat_moveforce', 0);
 		krpano.set('vlookat_moveforce', 0);
 	};
+		
+	function pageOffset(element) {
+		var r = {
+			left: element.offsetLeft,
+			top: element.offsetTop
+		};
+		if(element.offsetParent) {
+			var tmp = pageOffset(element.offsetParent);
+			r.left += tmp.left;
+			r.top += tmp.top;
+		};
+		return r;
+	};
 	
 	function handleMouseMove(event) {
-		var mx = event.layerX,
-				my = event.layerY,
+		var offset = pageOffset(event.target),
+				mx = event.clientX - offset.left,
+				my = event.clientY - offset.top,
 				sx = krpano.stagewidth * 0.5,
 				sy = krpano.stageheight * 0.5,
 				vx = (mx - sx) / sx,
