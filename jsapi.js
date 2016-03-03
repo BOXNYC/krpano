@@ -38,7 +38,7 @@ var krpanoplugin = function() {
 	      if(typeof krpanoJSAPI.hotSpot === 'function') for(var i in hotspots) krpanoJSAPI.hotSpot.call(krpano, {
 	        hotSpot: hotspots[i],
 	        element: hotspots[i].sprite,
-	        index: i
+	        index: parseInt(i)
 	      });
     };
     
