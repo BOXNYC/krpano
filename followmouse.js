@@ -1,12 +1,12 @@
-/*
+/**
 		Follow Mouse
-    krpanoJS javascript plugin
+		krpanoJS javascript plugin
 */
 
 var krpanoplugin = function() {
 		
 	var local = this,
-		krpano = null;
+			krpano = null;
 	
 	local.registerplugin = function(krpanointerface, pluginpath, pluginobject) {
 		if(!pluginobject.enabled) return;
@@ -33,11 +33,11 @@ var krpanoplugin = function() {
 	
 	function handleMouseMove(event) {
 		var mx = event.layerX,
-			my = event.layerY,
-			sx = krpano.stagewidth * 0.5,
-			sy = krpano.stageheight * 0.5,
-			vx = (mx - sx) / sx,
-			vy = (my - sy) / sy;
+				my = event.layerY,
+				sx = krpano.stagewidth * 0.5,
+				sy = krpano.stageheight * 0.5,
+				vx = (mx - sx) / sx,
+				vy = (my - sy) / sy;
 		if(vx > -0.5 && vx < 0.5 && vy > -0.5 && vy < 0.5) {
 			krpano.set('hlookat_moveforce', 0);
 			krpano.set('vlookat_moveforce', 0);
