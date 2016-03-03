@@ -10,8 +10,6 @@ var krpanoplugin = function() {
     
     local.registerplugin = function(krpanointerface, pluginpath, pluginobject) {
         if(!pluginobject.enabled) return;
-        if(typeof pluginobject.friction !== 'undefined' && !isNaN(parseFloat(pluginobject.friction)))
-	        friction = pluginobject.friction;console.log(friction);
         krpano = krpanointerface;
         if(krpano.get('version') < '1.0.7') {
           krpano.call('error(followmouse plugin - wrong krpano version! 1.0.7 or higher needed);');
