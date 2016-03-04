@@ -3,14 +3,13 @@
 ## followmouse HTML5 plugin
 krpano plugin for mouse-following camera yawing/pitching. XML:
 ```xml
-<plugin name="followmouse" devices="html5" keep="true" url="plugins/followmouse/followmouse.js" enabled="true"  />
-<plugin name="followmouse" devices="flash" keep="true" url="plugins/followmouse/followmouse.swf" enabled="true"  />
+<plugin name="followmouse" devices="html5" keep="true" enabled="true" url="plugins/followmouse/followmouse.js" alturl="plugins/followmouse/followmouse.swf"  />
 ```
 
 ## JavaScript API
 Provides external access to krpano
 ```xml
-<plugin name="jsapi" devices="html5" keep="true" url="plugins/jsapi.js" enabled="true" hotspotclassformat="hotspot" id="myKRPano" />
+<plugin name="jsapi" devices="html5" keep="true" url="plugins/js-api/jsapi.js" enabled="true" hotspotclassformat="hotspot" id="myKRPano" />
 ```
 #### Useage
 Add an object with methods
