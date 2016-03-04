@@ -9,12 +9,13 @@ krpano plugin for mouse-following camera yawing/pitching. XML:
 ## JavaScript API
 Provides external access to krpano
 ```xml
-<plugin name="jsapi" devices="html5" keep="true" url="plugins/jsapi.js" enabled="true" hotspotclassformat="hotspot" />
+<plugin name="jsapi" devices="html5" keep="true" url="plugins/jsapi.js" enabled="true" hotspotclassformat="hotspot" id="myKRPano" />
 ```
 #### Useage
 Add an object with methods
 ```javascript
-var krpanoJSAPI = {
+var krpanoJSAPI = {};
+krpanoJSAPI.myKRPano = {
   // Called when plugin registered
   init: function(event){
     // this : krpano
