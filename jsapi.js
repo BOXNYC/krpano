@@ -6,7 +6,8 @@
 var krpanoplugin = function() {
 		
 		var local = this,
-		    krpano = null;
+		    krpano = null,
+		    ID = '';
     
     local.registerplugin = function(krpanointerface, pluginpath, pluginobject) {
         if(!pluginobject.enabled) return;
@@ -16,26 +17,30 @@ var krpanoplugin = function() {
           return;
         };
         if(typeof krpanoJSAPI === 'undefined') {
-	        krpano.call('error(jsapi plugin - krpanoJSAPI not found. Create this: var krpanoJSAPI = {init, resize, } );');
+	        krpano.call('error(jsapi plugin - krpanoJSAPI not found. Create this: var krpanoJSAPI = {ID:{init,resize,hotSpot,hotSpots}} );');
           return;
         };
-        krpanoJSAPI.krpano = krpano;
+        if(typeof pluginobject.id !== 'undefined') {
+	        krpano.call('error(jsapi plugin - krpanoJSAPI[ID] not found. You must add an id attribute to the plugin);');
+          return;
+        };
+        ID = pluginobject.id;
         var hotspots = krpano.hotspot.getArray(),
 		        hotSpotClassFormat = pluginobject.hotspotclassformat || 'krpano-hotspot';
 		    for(var i in hotspots) hotspots[i].sprite.className = hotSpotClassFormat + ' ' + hotSpotClassFormat + '-' + i;
-        if(typeof krpanoJSAPI.init === 'function') krpanoJSAPI.init.call(krpano, {
+        if(typeof krpanoJSAPI[ID].init === 'function') krpanoJSAPI[ID].init.call(krpano, {
 	        width: krpano.stagewidth,
 	        height: krpano.stageheight
 	      });
-	      if(typeof krpanoJSAPI.hotSpots === 'function') {
+	      if(typeof krpanoJSAPI[ID].hotSpots === 'function') {
 		      var fragment = document.createDocumentFragment();
 				  for(var i in hotspots) fragment.appendChild(hotspots[i].sprite.cloneNode());
-		      krpanoJSAPI.hotSpots.call(krpano, {
+		      krpanoJSAPI[ID].hotSpots.call(krpano, {
 		        hotSpots: hotspots,
 		        elements: fragment.childNodes
 		      });
 		    };
-	      if(typeof krpanoJSAPI.hotSpot === 'function') for(var i in hotspots) krpanoJSAPI.hotSpot.call(krpano, {
+	      if(typeof krpanoJSAPI[ID].hotSpot === 'function') for(var i in hotspots) krpanoJSAPI[ID].hotSpot.call(krpano, {
 	        hotSpot: hotspots[i],
 	        element: hotspots[i].sprite,
 	        index: parseInt(i)
@@ -48,7 +53,7 @@ var krpanoplugin = function() {
     };
     
     local.onresize = function(width, height) {
-	    if(typeof krpanoJSAPI.resize !== 'function') krpanoJSAPI.resize({
+	    if(typeof krpanoJSAPI[ID].resize !== 'function') krpanoJSAPI[ID].resize({
 		    width: width,
 		    height: height,
 		    krpano: krpano
