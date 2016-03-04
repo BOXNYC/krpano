@@ -39,3 +39,5 @@ krpanoJSAPI.myKRPano = {
   }
 };
 ```
+#### To do:
+- Flash version support
