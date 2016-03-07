@@ -3,7 +3,7 @@
 ## followmouse HTML5 plugin
 krpano plugin for mouse-following camera yawing/pitching. XML:
 ```xml
-<plugin name="followmouse" keep="true" enabled="true" url="plugins/followmouse/followmouse.js" alturl="plugins/followmouse/followmouse.swf"  />
+<plugin name="followmouse" keep="true" enabled="true" alturl="plugins/followmouse/followmouse.js" url="plugins/followmouse/followmouse.swf"  />
 ```
 
 ## JavaScript API
