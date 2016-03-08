@@ -45,11 +45,21 @@ var krpanoplugin = function() {
 	        element: hotspots[i].sprite,
 	        index: parseInt(i)
 	      });
+	      if(typeof krpanoJSAPI[ID].mouseOut === 'function') krpano.control.layer.addEventListener('mouseout', krpanoJSAPI[ID].mouseOut, true);
+				if(typeof krpanoJSAPI[ID].mouseMove === 'function') krpano.control.layer.addEventListener('mousemove', krpanoJSAPI[ID].mouseMove, true);
+				if(typeof krpanoJSAPI[ID].mouseDown === 'function') krpano.control.layer.addEventListener('mousedown', krpanoJSAPI[ID].mouseDown, true);
+				if(typeof krpanoJSAPI[ID].mouseUp === 'function') krpano.control.layer.addEventListener('mouseup', krpanoJSAPI[ID].mouseUp, true);
+				if(typeof krpanoJSAPI[ID].mouseWheel === 'function') krpano.control.layer.addEventListener('mousewheel', krpanoJSAPI[ID].mouseWheel, true);
     };
     
     local.unloadplugin = function() {
       plugin = null;
       krpano = null;
+      if(typeof krpanoJSAPI[ID].mouseOut === 'function') krpano.control.layer.removeEventListener('mouseout', krpanoJSAPI[ID].mouseOut);
+			if(typeof krpanoJSAPI[ID].mouseMove === 'function') krpano.control.layer.removeEventListener('mousemove', krpanoJSAPI[ID].mouseMove);
+			if(typeof krpanoJSAPI[ID].mouseDown === 'function') krpano.control.layer.removeEventListener('mousedown', krpanoJSAPI[ID].mouseDown);
+			if(typeof krpanoJSAPI[ID].mouseUp === 'function') krpano.control.layer.removeEventListener('mouseup', krpanoJSAPI[ID].mouseUp);
+			if(typeof krpanoJSAPI[ID].mouseWheel === 'function') krpano.control.layer.removeEventListener('mousewheel', krpanoJSAPI[ID].mouseWheel);
     };
     
     local.onresize = function(width, height) {
