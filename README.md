@@ -39,5 +39,24 @@ krpanoJSAPI.myKRPano = {
   }
 };
 ```
+
+## Gyro (message suport)
+Gyro plugin with support for message. This enables passing deviceorientation alpha, beta, gamma to be passed to krpanos within an ad which is an iFrame with a different origin than it's parent window.
+#### Enabler useage
+Add this script to your Enabler enabled Doubleclick ad:
+```javascript
+if(!Enabler.isInitialized()) {
+    Enabler.addEventListener(
+    studio.events.StudioEvent.INIT, enablerInitialized);
+} else {
+    enablerInitialized();
+};
+function enablerInitialized() {
+    var externalJs = 'window.addEventListener("deviceorientation", function(event){var frame = document.getElementById("'+Enabler.getDartAssetId()+'.if"); frame.contentWindow.postMessage({alpha: event.alpha, beta: event.beta, gamma: event.gamma}, "*");}, true);';
+    Enabler.invokeExternalJsFunction(externalJs);
+};
+```
+
+
 #### To do:
 - Flash version support
